@@ -1,0 +1,106 @@
+// 全局变量
+$map-sider-bar-width: 320px;
+$base-font-size-small: 12px;
+$base-font-size-default: 14px;
+$base-font-size-big: 16px;
+$base-font-size-bigger: 18px;
+$base-font-size-max: 22px;
+// base color
+$themeColor: #007aff;
+$theme-blue: #58c5df;
+$theme-yellow: #fce173;
+$theme-green: #2ce091;
+
+$themeWhiteColoe: #f6fafc;
+$base-color-green: #13ce66;
+$base-color-white: #ffffff;
+$base-color-black: #000000;
+$base-color-yellow: #ffba00;
+$base-color-red: #ff4d4f;
+$base-color-gray: #97a8be;
+$base-border-color: #ebeef5;
+$base-font-color: #606266;
+$base-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+$base-black-gradient: linear-gradient(
+  180deg,
+  rgba(0, 0, 0, 0.45) 0%,
+  transparent
+);
+$base-theme-gradient: linear-gradient(
+  270deg,
+  rgba(65, 139, 194, 0),
+  rgba(65, 139, 194, 0.5)
+);
+$base-blue-gradient: linear-gradient(
+  to right,
+  rgba(50, 97, 168, 1),
+  rgba(21, 31, 46, 0)
+);
+$base-blue2-gradient: linear-gradient(
+  180deg,
+  rgba(135, 143, 166, 0),
+  rgba(117, 123, 151, 0.78)
+);
+$base-theme2-gradient: linear-gradient(
+  230deg,
+  rgba(65, 139, 194, 0),
+  rgba(65, 139, 194, 0.22)
+);
+
+@for $i from 120 through 550 {
+  .w#{$i} {
+    width: #{$i}px !important;
+  }
+  .h#{$i} {
+    height: #{$i}px !important;
+  }
+}
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+
+// 设置线性渐变背景
+@mixin setGrid($row: 1, $gap: 10px) {
+  display: grid;
+  grid-row-gap: $gap;
+  grid-column-gap: $gap;
+  grid-template-columns: repeat($row, 1fr);
+}
+
+// 设置背景图片
+@mixin setBackGroundImage($url: default) {
+  background-repeat: no-repeat;
+  background-image: url("~@/assets/" + $url);
+  background-size: 100% 100%;
+}
+
+@mixin ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin ellipsisLine($line: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+// 设置线性渐变背景
+@mixin setBackGroundImageGradient($colorRgba: $base-color-theme) {
+  background: linear-gradient(90deg, $colorRgba 0%, rgba(38, 191, 255, 0) 100%);
+}
+
+// 字体图标渐变
+// https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=3232359
+.dva-icon {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(135deg, #5efce8 10%, #736efe 100%);
+}
+
+:export {
+  themeColor: $themeColor;
+}
