@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 17:13:08
- * @LastEditTime: 2022-06-21 16:22:39
+ * @LastEditTime: 2022-06-21 17:09:32
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -69,6 +69,7 @@ export default {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  // color $themeColor;
   border: 1px solid #eee;
   transform: translateY(-50%);
 }
