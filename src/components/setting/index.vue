@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 17:13:08
- * @LastEditTime: 2022-06-20 17:44:13
+ * @LastEditTime: 2022-06-21 16:22:39
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -19,7 +19,12 @@
       :with-header="false"
     >
       <div class="navigation">
-        <div class="navigation-item" v-for="item in 1000" :key="item"> 导航 </div>
+        <div
+          class="navigation-item"
+          @click="clickRow(item)"
+          v-for="(item,index) in generatePage"
+          :key="index"
+        > {{ item.title }} </div>
       </div>
     </Drawer>
   </div>
@@ -28,6 +33,8 @@
 <script>
 
 import { Drawer } from 'element-ui'
+import generatePage from '@/views/index'
+// console.log(generatePage, '=generatePage=')
 
 export default {
   name: 'SettingDrawer',
@@ -37,7 +44,14 @@ export default {
   data () {
     return {
       drawer: false,
-      message: 'Hello Vue!'
+      generatePage
+    }
+  },
+  methods: {
+    clickRow (item) {
+      this.$router.push({
+        path: item.path
+      })
     }
   }
 }
@@ -63,5 +77,15 @@ export default {
   height: 100%;
   padding: 10px;
   overflow-y: auto;
+  .navigation-item{
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    &:hover{
+      background-color: #f5f5f5;
+    }
+  }
 }
 </style>
