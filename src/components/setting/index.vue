@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 17:13:08
- * @LastEditTime: 2022-06-21 17:09:32
+ * @LastEditTime: 2022-06-23 13:44:58
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -69,7 +69,6 @@ export default {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  // color $themeColor;
   border: 1px solid #eee;
   transform: translateY(-50%);
 }
@@ -78,6 +77,7 @@ export default {
   height: 100%;
   padding: 10px;
   overflow-y: auto;
+  color: #333;
   .navigation-item{
     cursor: pointer;
     padding: 10px;

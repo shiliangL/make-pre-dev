@@ -1,7 +1,7 @@
 /*
  * @Author: shiliangL
  * @Date: 2022-06-20 16:20:54
- * @LastEditTime: 2022-06-20 17:52:25
+ * @LastEditTime: 2022-06-23 14:58:46
  * @LastEditors: Do not edit
  * @Description:
  */
@@ -15,7 +15,12 @@ import './styles/index.scss'
 
 // 方便开发调试先祖册全局组件
 import components from '@/components'
+import directives from '@/directives/styles'
+
 Vue.use(components)
+Object.keys(directives).forEach(key => {
+  Vue.directive(key, directives[key])
+})
 
 Vue.config.productionTip = false
 

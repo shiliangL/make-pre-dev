@@ -1,33 +1,47 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-21 16:15:02
- * @LastEditTime: 2022-06-21 16:37:41
+ * @LastEditTime: 2022-06-23 11:16:56
  * @LastEditors: Do not edit
  * @Description:
 -->
 <template>
-  <div>
+  <div class="smartUnion">
     smartUnion
-    <div class="ac-sidebar-title">深圳湾入境人员概览</div>
-    <div class="ac-content-title1">人口数量统计</div>
-    <div class="ac-content-title2">标题名称</div>
-    <div class="ac-content-title3">
-      <i class="ac-icon icon-Gjichuxinxi"></i>
-      入境申报
-      <label>
-        已申报：<span>25,668</span>人
-      </label>
+
+    <div
+      class="list-item"
+      v-for="item in  list"
+      :key="item.id"
+      @click="item.click ? item.click() : ()=>({})"
+    >
+      <div v-text="item.name"> </div>
+      <div v-text="item.number"> </div>
     </div>
-    <div class="ac-content-title4">我是标题占位文字</div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'SmartUnion',
-  title: '智慧物联'
+  title: '智慧物联',
+  data () {
+    return {
+      list: new Array(24).fill(0).map((value, index, array) => ({
+        name: `物联设备${index}`,
+        id: index,
+        click: () => {
+          console.log(this)
+        }
+      }))
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+.list-item {
+  padding: 4px;
+  cursor: pointer;
+}
 </style>
