@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-10 11:41:20
- * @LastEditTime: 2022-06-24 11:16:43
+ * @LastEditTime: 2022-06-24 12:05:57
  * @LastEditors: Do not edit
  * @Description: 核心图表组件
 -->
@@ -89,7 +89,7 @@ export default {
       }
       // 是否自动适配
       if (this.autoResize) {
-        this._resizeHandler = debounce(400, false, (dom) => this.resizeDvaChart(dom))
+        this._resizeHandler = debounce(60, (dom) => this.resizeDvaChart(dom), { atBegin: true })
         addListener(this.$el, this._resizeHandler)
       }
       // 事件绑定
@@ -103,6 +103,7 @@ export default {
       })
     },
     resizeDvaChart (dom) {
+      console.log('是否自动适配')
       // offsetWidth offsetHeight
       this.$emit('resize', dom)
       this._chart && this._chart.resize()

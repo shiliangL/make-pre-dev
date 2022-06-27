@@ -1,25 +1,27 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-23 11:35:31
- * @LastEditTime: 2022-06-24 11:51:36
+ * @LastEditTime: 2022-06-27 09:49:18
  * @LastEditors: Do not edit
  * @Description:
 -->
 <template>
   <div class="cssLayout">
-    <div class="pie-chart">
-      <div
-        class="desc"
-        :style="style"
-      >
-        2000
+    <AdapterPanel>
+      <div class="pie-chart">
+        <div
+          class="desc"
+          :style="style"
+        >
+          2000
+        </div>
+        <DvaCoreChart
+          @resize="resize"
+          ref="chart"
+          :option="option"
+        ></DvaCoreChart>
       </div>
-      <DvaCoreChart
-        @ready="ready"
-        ref="chart"
-        :option="option"
-      ></DvaCoreChart>
-    </div>
+    </AdapterPanel>
   </div>
 </template>
 
@@ -104,15 +106,9 @@ export default {
       ]
     }
   },
-  mounted () {
-    setTimeout(() => {
-      console.log(this._chart.getOption(), '=smsm')
-    }, 2000)
-  },
   methods: {
-    ready (chart) {
-      //  ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc']
-      this._chart = chart
+    resize (dom) {
+      console.log(dom, '=x=')
     },
     toNumber (percentStr) {
       return percentStr.replace('%', '') * 1
