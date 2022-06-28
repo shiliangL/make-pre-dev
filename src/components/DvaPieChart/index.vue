@@ -1,12 +1,12 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-23 11:35:31
- * @LastEditTime: 2022-06-27 10:01:44
+ * @LastEditTime: 2022-06-28 19:22:16
  * @LastEditors: Do not edit
  * @Description:
 -->
 <template>
-  <div class="cssLayout">
+  <div class="dvaPieChart">
     <div class="pie-chart">
       <div
         class="desc"
@@ -26,8 +26,7 @@
 <script>
 
 export default {
-  name: 'cssLayout',
-  title: 'cssLayout',
+  name: 'DvaPieChart',
   computed: {
     style () {
       const { toNumber } = this
@@ -116,14 +115,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.cssLayout {
-  width: 360px;
+.dvaPieChart {
+  width: 100%;
   height: 100%;
   .pie-chart {
     width: 100%;
-    height: 220px;
+    height: 100%;
     position: relative;
-    border: 1px dashed #fff;
   }
 }
 </style>

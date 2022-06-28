@@ -1,3 +1,49 @@
+@use 'sass:math'; //math函数，https://sass-lang.com/documentation/breaking-changes/slash-div
+// 定义设计尺寸
+
+$designWidth: 3840;
+$designHeight: 2160;
+
+// 宽高参考PSD设计稿 ；我这里宽为1920px，高为1080px为例，所以这里 计算vw时除以1920，计算vh时除以1080；以便在使用时，不用去计算倍数， PSD设计稿中的尺寸是多少，我们样式就是多少！！！
+/* 
+  案例：一个class为title的div，宽100px, 高300px
+  
+  .title {
+	  width: vw(100);
+	  height: vh(300);
+  }
+  200/3840
+	200/1920
+  */
+
+@function vw($px) {
+  @return math.div($px, $designWidth) * 100vw;
+  // @return $px * 1px;
+}
+
+@function vh($px) {
+  @return math.div($px, $designHeight) * 100vh;
+  //@return $px * 1px;
+}
+
+@function px2font($px) {
+  @return math.div($px, $designWidth) * 100vw;
+  // @return $px * 1px;
+}
+
+//滚动条样式
+@mixin scrollBarStyle() {
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px #9b9ba3;
+    background: rgba(152, 155, 163, 0.2);
+  }
+}
+
 // 全局变量
 $map-sider-bar-width: 320px;
 $base-font-size-small: 12px;
@@ -70,7 +116,7 @@ $base-theme2-gradient: linear-gradient(
 // 设置背景图片
 @mixin setBackGroundImage($url: default) {
   background-repeat: no-repeat;
-  background-image: url("~@/assets/" + $url);
+  background-image: url('~@/assets/' + $url);
   background-size: 100% 100%;
 }
 

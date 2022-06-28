@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 17:13:08
- * @LastEditTime: 2022-06-23 13:44:58
+ * @LastEditTime: 2022-06-28 18:30:29
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -59,7 +59,7 @@ export default {
 
 <style lang="scss" scoped>
 .el-icon-s-order {
-  top: 50%;
+  top: 20px;
   width: 30px;
   height: 30px;
   right: 10px;
@@ -70,7 +70,7 @@ export default {
   justify-content: center;
   border-radius: 50%;
   border: 1px solid #eee;
-  transform: translateY(-50%);
+  // transform: translateY(-50%);
 }
 
 .navigation {
