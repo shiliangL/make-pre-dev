@@ -2,7 +2,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-28 18:01:15
- * @LastEditTime: 2022-06-28 19:27:55
+ * @LastEditTime: 2022-06-28 19:33:14
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -28,8 +28,24 @@
           <DvaLineChart></DvaLineChart>
         </div>
       </div>
+      <div class="aside-group-item">
+        <div class="aside-group-item-title">
+          设备统计
+        </div>
+        <div class="aside-group-item-content">
+          <DvaPieChart></DvaPieChart>
+        </div>
+      </div>
     </div>
     <div class="aside-panel right">
+      <div class="aside-group-item">
+        <div class="aside-group-item-title">
+          设备统计
+        </div>
+        <div class="aside-group-item-content">
+          <DvaPieChart></DvaPieChart>
+        </div>
+      </div>
       <div class="aside-group-item">
         <div class="aside-group-item-title">
           设备统计
@@ -96,7 +112,7 @@ export default {
     padding: 6px;
     background: $base-theme-gradient;
   }
-  .aside-group-item-content{
+  .aside-group-item-content {
     height: vh(320);
   }
 }
