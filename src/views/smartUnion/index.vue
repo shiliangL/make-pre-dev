@@ -1,14 +1,12 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-21 16:15:02
- * @LastEditTime: 2022-06-23 11:16:56
+ * @LastEditTime: 2022-07-01 09:15:06
  * @LastEditors: Do not edit
  * @Description:
 -->
 <template>
   <div class="smartUnion">
-    smartUnion
-
     <div
       class="list-item"
       v-for="item in  list"
