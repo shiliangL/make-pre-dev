@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-10 11:41:20
- * @LastEditTime: 2022-07-04 17:37:07
+ * @LastEditTime: 2022-07-04 18:17:12
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -52,7 +52,9 @@ export default {
         desc: '汇总情况',
         color: themeColors,
         radius: ['64%', '86%'],
-        dispatchAction: true //  是否开启高亮循环动画
+        center: ['50%', '50%'],
+        dispatchAction: true, //  是否开启高亮循环动画
+        dispatchActionTime: 3000
       }
     }
   },
@@ -95,7 +97,7 @@ export default {
       return new Promise((resolve) => {
         const seriesData = []
         const { chartData } = this
-        const { keyCode, radius, color } = this.initConfig
+        const { keyCode, radius, color, center } = this.initConfig
         let indexKey = -1
         chartData.forEach((item) => {
           indexKey = (indexKey + 1) % color.length
@@ -130,10 +132,10 @@ export default {
             {
               name: '数据项图表',
               type: 'pie',
-              radius: radius || ['65%', '76%'],
-              center: ['50%', '50%'],
-              hoverAnimation: true,
-              hoverOffset: 10,
+              radius: ['53%', '58%'] || radius,
+              center: center,
+              // hoverAnimation: true,
+              // hoverOffset: 10,
               label: {
                 show: false
               },
@@ -144,14 +146,32 @@ export default {
             },
             {
               type: 'pie',
-              name: '外2细圆环',
-              radius: ['55%', '60%'],
-              center: ['50%', '50%'],
-              hoverAnimation: false,
+              name: '外1细圆环',
+              radius: ['70%', '71%'],
+              center: center,
               label: {
                 show: false
               },
               labelLine: {
+                show: false
+              },
+              tooltip: {
+                show: false
+              },
+              data: decoratorPie3()
+            },
+            {
+              type: 'pie',
+              name: '外2细圆环',
+              radius: ['60%', '65%'],
+              center: center,
+              label: {
+                show: false
+              },
+              labelLine: {
+                show: false
+              },
+              tooltip: {
                 show: false
               },
               data: decoratorPie3({ value: 100 })
@@ -159,34 +179,39 @@ export default {
             {
               type: 'pie',
               name: '内细圆环',
-              radius: ['52%', '55%'],
-              center: ['50%', '50%'],
-              hoverAnimation: false,
+              silent: true,
+              radius: ['44%', '45%'],
+              center: center,
               label: {
                 show: false
               },
               labelLine: {
                 show: false
               },
+              tooltip: {
+                show: false
+              },
               data: decoratorPie3()
             }
+
           ]
         }
         return resolve({ option: initOption })
       })
     },
     dispatchActionAuto () {
+      const { dispatchActionTime } = this.initConfig
       clearInterval(this.autoHightLightTimer)
       this.autoHightLightTimer = setInterval(() => {
         const dataLen = this.chartData.length
         this.chart.dispatchAction({ type: 'downplay', seriesIndex: 0, dataIndex: this.currentIndex })
         this.currentIndex = (this.currentIndex + 1) % dataLen
-        this.chart.dispatchAction({
+        this.chart && this.chart.dispatchAction({
           seriesIndex: 0,
           type: 'highlight',
           dataIndex: this.currentIndex
         })
-      }, 3000)
+      }, dispatchActionTime)
     }
   },
   render (h) {
@@ -284,7 +309,8 @@ export default {
     }
   }
   .dva-chart-desc {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     .desc-item-cube {
       width: 8px;
       height: 8px;
@@ -293,6 +319,9 @@ export default {
     }
     .desc-item-name {
       padding-right: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
     .desc-item-value-count2 {
       padding: 0 4px;

@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 16:20:54
- * @LastEditTime: 2022-07-04 17:40:35
+ * @LastEditTime: 2022-07-04 18:12:49
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -27,13 +27,11 @@ export default {
   data () {
     return {
       charData: [
-        { name: '小桥', value: 22, unit: '架' },
-        { name: '中桥', value: 24, unit: '架' },
-        { name: '大桥', value: 32, unit: '架' },
-        { name: '特大桥', value: 52, unit: '架' }
-      ],
-      ringChartAConfig: {},
-      ringChartBConfig: {}
+        { name: '智慧物业', value: 22, unit: '架' },
+        { name: '智慧城管', value: 24, unit: '架' },
+        { name: '智慧产业', value: 32, unit: '架' },
+        { name: '智慧物联', value: 32, unit: '架' }
+      ]
     }
   }
 }
