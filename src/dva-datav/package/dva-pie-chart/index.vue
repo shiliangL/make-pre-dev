@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-10 11:41:20
- * @LastEditTime: 2022-07-04 16:43:49
+ * @LastEditTime: 2022-07-04 17:37:07
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -11,7 +11,7 @@ import DvaCount2 from 'dva-datav/package/dva-count2'
 import DvaCoreChart from 'dva-datav/package/dva-core-chart'
 
 import { deepMerge } from 'dva-datav/utils'
-import { themeColors } from 'dva-datav/utils/dva'
+import { themeColors, decoratorPie3 } from 'dva-datav/utils/dva'
 import renderComponent from 'dva-datav/mixins/renderComponent'
 
 // getRandomData
@@ -128,12 +128,12 @@ export default {
           },
           series: [
             {
-              name: '',
+              name: '数据项图表',
               type: 'pie',
-              radius: radius || ['65%', '86%'],
+              radius: radius || ['65%', '76%'],
               center: ['50%', '50%'],
               hoverAnimation: true,
-              hoverOffset: 5,
+              hoverOffset: 10,
               label: {
                 show: false
               },
@@ -141,6 +141,34 @@ export default {
                 show: false
               },
               data: seriesData
+            },
+            {
+              type: 'pie',
+              name: '外2细圆环',
+              radius: ['55%', '60%'],
+              center: ['50%', '50%'],
+              hoverAnimation: false,
+              label: {
+                show: false
+              },
+              labelLine: {
+                show: false
+              },
+              data: decoratorPie3({ value: 100 })
+            },
+            {
+              type: 'pie',
+              name: '内细圆环',
+              radius: ['52%', '55%'],
+              center: ['50%', '50%'],
+              hoverAnimation: false,
+              label: {
+                show: false
+              },
+              labelLine: {
+                show: false
+              },
+              data: decoratorPie3()
             }
           ]
         }

@@ -1,13 +1,13 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 16:20:54
- * @LastEditTime: 2022-07-04 16:46:30
+ * @LastEditTime: 2022-07-04 17:40:35
  * @LastEditors: Do not edit
  * @Description:
 -->
 <template>
   <div class="sidebar-bar">
-    <div class="sidebar-bar-group-item">
+    <div class="sidebar-bar-group-item" v-height="190">
       <dva-pie-chart direction="horizontal" :chartData="charData" />
     </div>
     <div class="sidebar-bar-group-item" v-height="230">
@@ -17,11 +17,12 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
 export default {
   name: 'RingChart',
   title: '环形图表',
   components: {
+
   },
   data () {
     return {

@@ -1,13 +1,21 @@
 /*
  * @Author: shiliangL
  * @Date: 2022-07-04 14:18:26
- * @LastEditTime: 2022-07-04 14:39:20
+ * @LastEditTime: 2022-07-04 17:34:10
  * @LastEditors: Do not edit
  * @Description:
  */
 export const defaultDvaConfig = {
   // 渐变颜色
-  gradientColor: ({ color1 = '#00fcae', color2 = '#006388', type = 'linear', x = 0, y = 0, x2 = 0, y2 = 1 } = {}) => ({
+  gradientColor: ({
+    color1 = '#00fcae',
+    color2 = '#006388',
+    type = 'linear',
+    x = 0,
+    y = 0,
+    x2 = 0,
+    y2 = 1
+  } = {}) => ({
     type,
     x,
     y,
@@ -23,9 +31,16 @@ export const defaultDvaConfig = {
     backgroundColor: 'transparent',
     animationEasing: 'elasticOut',
     animationDelayUpdate: (k) => 5 * k,
+    animationDelay: (idx) => idx * 10,
+    tooltip: {
+      show: false
+    },
+    legend: {
+      show: false
+    },
     series: []
   }),
-  radius: (radius = ['64%', '86%']) => (radius)
+  radius: (radius = ['64%', '86%']) => radius
 }
 
 export const themeColors = [
@@ -235,4 +250,42 @@ export function getRandomData (l = 6, n = 10, m = 50) {
 // 装饰器部分
 export const dvaDecoratorOptions = {
   doubleCircle: initDoubleCircleOption()
+}
+
+export function decoratorPie3 (opt = {}) {
+  const { color = '#5bc5ff29', value = 0 } = opt
+  const dataArr = []
+  if (value) {
+    dataArr.push({
+      value: value,
+      itemStyle: {
+        color: color,
+        borderWidth: 0,
+        borderColor: 'rgba(0,0,0,0)'
+      }
+    })
+  } else {
+    for (let i = 0; i < 100; i++) {
+      if (i % 2 === 0) {
+        dataArr.push({
+          value: 25,
+          itemStyle: {
+            color: color,
+            borderWidth: 0,
+            borderColor: 'rgba(0,0,0,0)'
+          }
+        })
+      } else {
+        dataArr.push({
+          value: 20,
+          itemStyle: {
+            borderWidth: 0,
+            color: 'rgba(0,0,0,0)',
+            borderColor: 'rgba(0,0,0,0)'
+          }
+        })
+      }
+    }
+  }
+  return dataArr
 }
