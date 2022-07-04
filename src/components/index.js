@@ -1,7 +1,7 @@
 /*
  * @Author: shiliangL
  * @Date: 2021-11-21 08:58:40
- * @LastEditTime: 2022-06-20 17:50:58
+ * @LastEditTime: 2022-07-04 10:08:21
  * @LastEditors: Do not edit
  * @Description:
  */
@@ -18,7 +18,7 @@ Object.keys(mapList).forEach(item => {
     name: item.replace('/index', '')
   })
 })
-console.log(components, '=item=')
+console.log(components, '=全局组件=')
 
 export default {
   install (Vue) {

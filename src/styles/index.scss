@@ -36,6 +36,12 @@ a {
   }
 }
 
+.webgl {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 /* 内外边距通常让各个浏览器样式的表现位置不同 */
 body,
 dl,
@@ -88,7 +94,6 @@ ol,
 li {
   list-style: none;
 }
-
 
 :root {
   --text-color: #fff;

@@ -1,14 +1,13 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 16:20:54
- * @LastEditTime: 2022-07-01 09:15:26
+ * @LastEditTime: 2022-07-04 10:06:46
  * @LastEditors: Do not edit
  * @Description:
 -->
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <DvaProgress></DvaProgress>
+    <EarthThree></EarthThree>
   </div>
 </template>
 
@@ -21,3 +20,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.about {
+  width: 100%;
+  height: 100%;
+}
+</style>
