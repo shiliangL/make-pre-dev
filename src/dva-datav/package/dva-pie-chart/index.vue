@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-10 11:41:20
- * @LastEditTime: 2022-07-04 18:17:12
+ * @LastEditTime: 2022-07-04 18:21:58
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -260,6 +260,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  font-size: var(--body-font-size);
   &.horizontal {
     display: grid;
     grid-template-columns: 2fr 1fr;
