@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-10 11:41:20
- * @LastEditTime: 2022-07-04 15:00:47
+ * @LastEditTime: 2022-07-04 16:43:49
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -20,10 +20,19 @@ export default {
   mixins: [renderComponent],
   props: {
     config: {
+      type: Object,
+      desc: '配置项',
       default: () => ({})
+    },
+    direction: {
+      type: String,
+      default: () => 'horizontal',
+      desc: 'horizontal 水平方向,vertical垂直方向',
+      validator: (value) => ['horizontal', 'vertical'].includes(value)
     },
     chartData: {
       type: [Array],
+      desc: '图表数据项',
       default: () => []// getRandomData(8, 50, 1200)
     }
   },
@@ -37,13 +46,12 @@ export default {
       currentIndex: -1,
       initConfig: {
         unit: '',
-        height: '180px', // 设置auto 则自适父级高度
         keyName: 'name',
         keyCode: 'value',
+        className: '',
         desc: '汇总情况',
         color: themeColors,
         radius: ['64%', '86%'],
-        direction: 'horizontal', // 'horizontal', 'vertical'
         dispatchAction: true //  是否开启高亮循环动画
       }
     }
@@ -65,6 +73,7 @@ export default {
   },
   watch: {
     chartData: {
+      immediate: true,
       handler (val) {
         if (!val) return
         this.handlerOption().then(({ option }) => {
@@ -153,12 +162,13 @@ export default {
     }
   },
   render (h) {
-    const { chartData, option, total } = this
-    const { className, desc, unit, height, direction } = this.initConfig
+    const { chartData, option, total, direction } = this
+    const { className, desc, unit } = this.initConfig
+    const classDirection = ['horizontal', 'vertical'].includes(direction) ? direction : 'horizontal'
 
     const ChartMainBox = h('div', { class: 'dva-chart-box' }, [
       h('dva-core-chart', {
-        props: { option, ...this.$attrs },
+        props: { ...this.$attrs, option },
         on: {
           ...this.$listeners,
           ready: (chart) => this.ready(chart)
@@ -168,7 +178,6 @@ export default {
         h('div', { class: 'dva-chart-content-desc' }, desc)
       ])
     ])
-
     const ChartDescBox = h('div', { class: ['dva-chart-desc'] }, [
       this.$scopedSlots.legend
         ? this.$scopedSlots.legend({ data: chartData })
@@ -182,15 +191,11 @@ export default {
           ])
         })
     ])
-
     return h('div',
       {
         class: [
           'dva-pie-chart-main',
-          { [className]: true, [direction]: true }],
-        style: {
-          height
-        }
+          { [className]: true, [classDirection]: true }]
       },
       [ChartMainBox, ChartDescBox])
   }
@@ -199,27 +204,47 @@ export default {
 
 <style lang="scss">
 .dva-pie-chart-main {
-  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   &.horizontal {
-    flex-direction: row;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     .dva-chart-box {
-      flex: 1;
+      overflow: hidden;
     }
     .dva-chart-desc {
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
+    //  每一个描述项
+    .dva-chart-desc-item {
+      cursor: pointer;
+      display: grid;
+      align-items: center;
+      grid-template-columns: 14px 2fr 1fr;
+    }
   }
   &.vertical {
-    flex-direction: column;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: 4fr 1fr;
     .dva-chart-box {
-      flex: 1;
+      overflow: hidden;
     }
     .dva-chart-desc {
       display: grid;
       grid-template-columns: 1fr 1fr;
+    }
+
+    //  每一个描述项
+    .dva-chart-desc-item {
+      cursor: pointer;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      grid-template-columns: 14px auto auto;
     }
   }
   .dva-core-chart {
@@ -227,22 +252,16 @@ export default {
       overflow: hidden;
     }
     .dva-chart-content-number {
-      font-size: 22px;
       color: $base-color-yellow;
     }
   }
   .dva-chart-desc {
+    overflow: hidden;
     .desc-item-cube {
       width: 8px;
       height: 8px;
       margin-right: 6px;
       display: inline-block;
-    }
-    .dva-chart-desc-item {
-      cursor: pointer;
-      display: grid;
-      align-items: center;
-      grid-template-columns: 14px 2fr 1fr;
     }
     .desc-item-name {
       padding-right: 20px;

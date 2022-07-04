@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-10 11:41:20
- * @LastEditTime: 2022-07-04 14:59:26
+ * @LastEditTime: 2022-07-04 15:32:30
  * @LastEditors: Do not edit
  * @Description: 核心图表组件
 -->
@@ -185,7 +185,6 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
-    line-height: 1.2;
     align-items: center;
     position: absolute;
     flex-direction: column;
