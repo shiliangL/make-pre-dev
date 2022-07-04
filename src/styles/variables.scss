@@ -135,7 +135,7 @@ $base-theme2-gradient: linear-gradient(
 }
 
 // 设置线性渐变背景
-@mixin setBackGroundImageGradient($colorRgba: $base-color-theme) {
+@mixin setBackGroundImageGradient($colorRgba:$themeColor) {
   background: linear-gradient(90deg, $colorRgba 0%, rgba(38, 191, 255, 0) 100%);
 }
 
