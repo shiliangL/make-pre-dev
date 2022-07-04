@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-10 11:41:20
- * @LastEditTime: 2022-07-04 18:21:58
+ * @LastEditTime: 2022-07-04 18:40:57
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -21,7 +21,7 @@ export default {
   props: {
     config: {
       type: Object,
-      desc: '配置项',
+      desc: '配置项-常规配置-不参与数据响应式',
       default: () => ({})
     },
     direction: {
@@ -29,6 +29,11 @@ export default {
       default: () => 'horizontal',
       desc: 'horizontal 水平方向,vertical垂直方向',
       validator: (value) => ['horizontal', 'vertical'].includes(value)
+    },
+    color: {
+      type: Array,
+      desc: '取色盘',
+      default: () => themeColors
     },
     chartData: {
       type: [Array],
@@ -50,7 +55,6 @@ export default {
         keyCode: 'value',
         className: '',
         desc: '汇总情况',
-        color: themeColors,
         radius: ['64%', '86%'],
         center: ['50%', '50%'],
         dispatchAction: true, //  是否开启高亮循环动画
@@ -65,7 +69,7 @@ export default {
     }
   },
   created () {
-    // 合并装饰器配置
+    // 合并配置
     deepMerge(this.initConfig, this.config)
   },
   mounted () {
@@ -78,7 +82,7 @@ export default {
       immediate: true,
       handler (val) {
         if (!val) return
-        this.handlerOption().then(({ option }) => {
+        this.handlerSetOption().then(({ option }) => {
           setTimeout(() => {
             this.option = option
           }, 200)
@@ -93,11 +97,11 @@ export default {
       const { dispatchAction } = this.initConfig
       if (dispatchAction) this.dispatchActionAuto()
     },
-    handlerOption () {
+    handlerSetOption () {
       return new Promise((resolve) => {
         const seriesData = []
-        const { chartData } = this
-        const { keyCode, radius, color, center } = this.initConfig
+        const { chartData, color } = this
+        const { keyCode, radius, center } = this.initConfig
         let indexKey = -1
         chartData.forEach((item) => {
           indexKey = (indexKey + 1) % color.length
