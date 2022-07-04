@@ -1,14 +1,14 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-04-23 13:17:56
- * @LastEditTime: 2022-05-31 16:02:17
+ * @LastEditTime: 2022-07-04 15:03:34
  * @LastEditors: Do not edit
  * @Description:
 -->
 
 <script>
 
-import { uuid, deepMerge } from '@/utils'
+import { uuid, deepMerge } from 'dva-datav/utils'
 import renderComponent from 'dva-datav/mixins/renderComponent'
 
 export default {
@@ -126,8 +126,6 @@ export default {
       }
       &.is-active {
         color:$themeColor;
-        // border: 1px solid$themeColor;
-        // border-bottom-color: #001526;
         &:before {
           transition-duration: 0.5s;
           background: #001526;

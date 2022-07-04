@@ -1,13 +1,13 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-10 11:41:20
- * @LastEditTime: 2022-07-04 14:31:28
+ * @LastEditTime: 2022-07-04 14:59:26
  * @LastEditors: Do not edit
  * @Description: 核心图表组件
 -->
 <script>
 
-import { deepMerge } from '@/utils'
+import { deepMerge } from 'dva-datav/utils'
 import { debounce } from 'throttle-debounce'
 import { addListener, removeListener } from 'resize-detector'
 

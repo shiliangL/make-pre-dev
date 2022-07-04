@@ -1,15 +1,16 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-10 11:41:20
- * @LastEditTime: 2022-06-02 11:35:52
+ * @LastEditTime: 2022-07-04 15:00:47
  * @LastEditors: Do not edit
  * @Description:
 -->
 <script>
 
-import { deepMerge } from '@/utils'
-import DvaCount2 from '../dva-count2'
-import DvaCoreChart from '../dva-core-chart'
+import DvaCount2 from 'dva-datav/package/dva-count2'
+import DvaCoreChart from 'dva-datav/package/dva-core-chart'
+
+import { deepMerge } from 'dva-datav/utils'
 import { themeColors } from 'dva-datav/utils/dva'
 import renderComponent from 'dva-datav/mixins/renderComponent'
 

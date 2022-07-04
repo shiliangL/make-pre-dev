@@ -1,13 +1,13 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-09 12:54:23
- * @LastEditTime: 2022-04-29 12:03:48
+ * @LastEditTime: 2022-07-04 14:59:16
  * @LastEditors: Do not edit
  * @Description:
 -->
 <script>
 
-import { deepMerge } from '@/utils'
+import { deepMerge } from 'dva-datav/utils'
 import renderComponent from 'dva-datav/mixins/renderComponent'
 
 export default {
@@ -85,7 +85,7 @@ export default {
 .dva-table-wrapper {
   width: 100%;
   overflow: auto;
-  border: 1px solid$themeColor;
+  border: 1px solid $themeColor;
   .dva-table {
     width: 100%;
     border-collapse: collapse;
@@ -103,7 +103,7 @@ export default {
   .dva-table-tbody {
     overflow: hidden;
     tr {
-      border-top: 1px solid$themeColor;
+      border-top: 1px solid $themeColor;
     }
     td {
       padding: 4px;
