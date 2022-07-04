@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 16:20:54
- * @LastEditTime: 2022-07-04 16:42:26
+ * @LastEditTime: 2022-07-04 16:46:30
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -10,7 +10,7 @@
     <div class="sidebar-bar-group-item">
       <dva-pie-chart direction="horizontal" :chartData="charData" />
     </div>
-    <div class="sidebar-bar-group-item" v-height="240">
+    <div class="sidebar-bar-group-item" v-height="230">
       <dva-pie-chart direction="vertical" :chartData="charData" />
     </div>
   </div>
