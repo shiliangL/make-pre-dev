@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-10 11:41:20
- * @LastEditTime: 2022-07-04 14:17:10
+ * @LastEditTime: 2022-07-04 18:44:15
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -81,6 +81,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .dva-progress-warp {
   .dva-progress-line-desc {
     display: flex;

@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-10 11:41:20
- * @LastEditTime: 2022-07-04 18:40:57
+ * @LastEditTime: 2022-07-05 10:22:06
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -51,6 +51,8 @@ export default {
       currentIndex: -1,
       initConfig: {
         unit: '',
+        maxRadius: 86,
+        diffRadius: 4,
         keyName: 'name',
         keyCode: 'value',
         className: '',
@@ -79,7 +81,7 @@ export default {
   },
   watch: {
     chartData: {
-      immediate: true,
+      // immediate: true,
       handler (val) {
         if (!val) return
         this.handlerSetOption().then(({ option }) => {
@@ -96,8 +98,15 @@ export default {
       this.$emit('ready', chart)
       const { dispatchAction } = this.initConfig
       if (dispatchAction) this.dispatchActionAuto()
+
+      this.handlerSetOption().then(({ option }) => {
+        setTimeout(() => {
+          this.option = option
+        }, 200)
+      })
     },
     handlerSetOption () {
+      const { maxRadius } = this.initConfig
       return new Promise((resolve) => {
         const seriesData = []
         const { chartData, color } = this
@@ -136,7 +145,7 @@ export default {
             {
               name: '数据项图表',
               type: 'pie',
-              radius: ['53%', '58%'] || radius,
+              radius: [`${50}%`, `${maxRadius - 10}%`] || radius,
               center: center,
               // hoverAnimation: true,
               // hoverOffset: 10,
@@ -150,8 +159,8 @@ export default {
             },
             {
               type: 'pie',
-              name: '外1细圆环',
-              radius: ['70%', '71%'],
+              name: '最外细圆环1%',
+              radius: [`${maxRadius - 1}%`, `${maxRadius}%`],
               center: center,
               label: {
                 show: false
@@ -166,8 +175,8 @@ export default {
             },
             {
               type: 'pie',
-              name: '外2细圆环',
-              radius: ['60%', '65%'],
+              name: '内细圆环100',
+              radius: ['66%', '70%'],
               center: center,
               label: {
                 show: false
@@ -182,9 +191,9 @@ export default {
             },
             {
               type: 'pie',
-              name: '内细圆环',
+              name: '内细圆环1%',
               silent: true,
-              radius: ['44%', '45%'],
+              radius: ['49%', '50%'],
               center: center,
               label: {
                 show: false
@@ -200,6 +209,7 @@ export default {
 
           ]
         }
+        this.$emit('setOptionChange', initOption, this.chart)
         return resolve({ option: initOption })
       })
     },
