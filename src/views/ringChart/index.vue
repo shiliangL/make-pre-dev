@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 16:20:54
- * @LastEditTime: 2022-07-05 10:14:39
+ * @LastEditTime: 2022-07-05 14:07:57
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -71,11 +71,11 @@ export default {
       this._chart = chart
     },
     changeChartRadius (rang, item) {
-      const { _chart, chartSeries } = this
-      _chart && _chart.setOption({ series: chartSeries })
+      const { _chart } = this
+      // item.radius = rang.map(kk => (!kk ? 0 : (kk + '%')))
+      _chart && _chart.setOption({ series: this.chartSeries })
     },
     setOptionChange (opt) {
-      console.log('opt', opt)
       const chartSeries = JSON.parse(JSON.stringify(opt.series))
       chartSeries.forEach(item => {
         item.radius = item.radius.map(kk => (!kk ? 0 : (kk.replace('%', '') * 1)))

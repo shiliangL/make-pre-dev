@@ -1,12 +1,12 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 17:13:08
- * @LastEditTime: 2022-06-28 18:30:29
+ * @LastEditTime: 2022-07-05 14:06:57
  * @LastEditors: Do not edit
  * @Description:
 -->
 <template>
-  <div>
+  <div class="setting">
     <div
       class="el-icon-s-order"
       @click="drawer=true"
@@ -20,7 +20,7 @@
     >
       <div class="navigation">
         <div
-          class="navigation-item"
+          :class="['navigation-item',{'active': $route.name === item.name }]"
           @click="clickRow(item)"
           v-for="(item,index) in generatePage"
           :key="index"
@@ -78,14 +78,19 @@ export default {
   padding: 10px;
   overflow-y: auto;
   color: #333;
-  .navigation-item{
+  .navigation-item {
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
+    color: var(--text-black-color);
     border: 1px solid #eee;
     margin-bottom: 10px;
-    &:hover{
-      background-color: #f5f5f5;
+    transition: all 0.3s;
+    &.active,
+    &:hover {
+      color: var(--text-white-color);
+      border: 1px solid var(--primary-color);
+      background-color: var(--primary-color);
     }
   }
 }
