@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-07-04 09:51:14
- * @LastEditTime: 2022-07-04 10:10:43
+ * @LastEditTime: 2022-07-11 08:48:06
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -41,10 +41,21 @@ export default {
       const controls = new OrbitControls(camera, renderer.domElement)
       controls.enableDamping = true
 
+      const resize = () => {
+        // const canvasSize = renderer.getSize(new THREE.Vector2())
+        const windowSize = new THREE.Vector2(window.innerWidth, window.innerHeight)
+        if (windowSize) {
+          console.log(resize, '=resize=')
+          // camera.aspect = windowSize.x / windowSize.y
+          camera.aspect = window.innerWidth / window.innerHeight
+          camera.updateProjectionMatrix()
+          // renderer.setSize(windowSize.x, windowSize.y, false)
+          renderer.setSize(window.innerWidth, window.innerHeight)
+        }
+      }
+
       window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight
-        camera.updateProjectionMatrix()
-        renderer.setSize(window.innerWidth, window.innerHeight)
+        resize()
       }, false)
 
       const light = new THREE.DirectionalLight(0xffffff, 1)
@@ -85,6 +96,7 @@ export default {
       scene.add(earth)
 
       const animate = () => {
+        // resize()
         requestAnimationFrame(animate)
         earth && (earth.rotation.y += 0.002)
         atmosphere && (atmosphere.rotation.y += 0.004)
