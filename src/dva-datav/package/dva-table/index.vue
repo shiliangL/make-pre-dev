@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-03-09 12:54:23
- * @LastEditTime: 2022-07-04 14:59:16
+ * @LastEditTime: 2022-07-20 09:28:30
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -11,7 +11,7 @@ import { deepMerge } from 'dva-datav/utils'
 import renderComponent from 'dva-datav/mixins/renderComponent'
 
 export default {
-  name: 'DavTable',
+  name: 'DvaTable',
   functional: false,
   mixins: [renderComponent],
   props: {

@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 16:20:54
- * @LastEditTime: 2022-07-05 13:54:12
+ * @LastEditTime: 2022-07-20 10:28:08
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -58,7 +58,6 @@ export default {
 .about {
   width: 100%;
   height: 100%;
-
   .grid-group {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
