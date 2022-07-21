@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-06-20 16:20:54
- * @LastEditTime: 2022-07-20 20:49:16
+ * @LastEditTime: 2022-07-21 15:37:32
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -20,14 +20,40 @@
       <DvaEmpty></DvaEmpty>
     </div>
     <div class="border-box-contaier">
+      水平滚动网格布局
       <DvaSwiper
         :data="dvaSwiperData"
-        :config="dvaSwiperConfig"
-      ></DvaSwiper>
+        :config="horizontal.config"
+        :carouselStyle="horizontal.carouselStyle"
+      >
+        <div
+          slot="slide"
+          slot-scope="{ item }"
+        >
+          datav
+          <span v-if="0"> {{ item }}</span>
+        </div>
+      </DvaSwiper>
+    </div>
+    <div class="border-box-contaier">
+      垂直滚动网格布局
+      <DvaSwiper
+        :data="dvaSwiperData"
+        :config="vertical.config"
+        :carouselStyle="vertical.carouselStyle"
+      >
+        <div
+          slot="slide"
+          slot-scope="{ item }"
+        >
+          datav
+          <span v-if="0"> {{ item }}</span>
+        </div>
+      </DvaSwiper>
     </div>
     <div class="border-box-contaier">
       <DvaSwiper :data="dvaSwiperData">
-        <div slot="header">
+        <div slot="header" v-if="0">
           销售排行榜
         </div>
         <div
@@ -43,33 +69,63 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
 export default {
   name: 'HomeView',
   title: '系统首页',
-  components: {
-  },
   data () {
     return {
       dvaSwiperData: [],
-      dvaSwiperConfig: {
-        slidesPerView: 4
+      // 水平配置
+      horizontal: {
+        config: {
+          direction: 'horizontal',
+          slidesPerView: 3, // 排列个数
+          spaceBetween: 4, // 排列间隔
+          grid: {
+            rows: 2, // 设置网格中Slide的行数
+            // 设置网格中Slide的行数。
+            // 当设置row>1时目前还不兼容loop模式（loop: true）。
+            // 在Slide数量不足以填满的情况下可能会出现布局不理想（例如4行3列，但是只有10个Slide），建议使用空的Slide将数量补足
+            fill: 'row' // 设置网格的排列方向，默认column为竖向，row为横向
+          }
+        },
+        carouselStyle: {
+          height: 'calc((100% - 4px) / 2)'
+        }
+      },
+      // 垂直配置
+      vertical: {
+        config: {
+          direction: 'vertical',
+          slidesPerView: 3,
+          spaceBetween: 4,
+          grid: {
+            rows: 2,
+            fill: 'row'
+          }
+        },
+        carouselStyle: {
+          width: 'calc((100% - 4px) / 2)'
+        }
       }
     }
   },
   mounted () {
     setTimeout(() => {
       this.dvaSwiperData = new Array(20).fill({ name: 'dva-datav' }).map((item, index) => ({ ...item, index }))
-    }, 2000)
+    }, 1000)
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .page {
+  gap: 10px;
   display: grid;
-  grid-template-columns: repeat(3, 33.33%);
-  grid-template-rows: repeat(3, 33.33%);
+  overflow-y: auto;
+  grid-template-columns: repeat(3, 1fr);
+  // grid-template-rows: rows(3, 300px);
 }
 .border-box-contaier {
   width: 100%;
@@ -78,5 +134,6 @@ export default {
   overflow: hidden;
   box-sizing: border-box;
   background-color: #000;
+  border: 1px solid rgb(0, 43, 220);
 }
 </style>

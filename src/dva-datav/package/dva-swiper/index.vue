@@ -1,7 +1,7 @@
 <!--
  * @Author: shiliangL
  * @Date: 2022-07-20 15:26:36
- * @LastEditTime: 2022-07-20 21:10:12
+ * @LastEditTime: 2022-07-21 14:57:23
  * @LastEditors: Do not edit
  * @Description:
 -->
@@ -12,15 +12,25 @@ import { uuid } from 'dva-datav/utils'
 export default {
   name: 'DvaSwiper',
   props: {
+    data: {
+      type: Array,
+      desc: '数据配置项',
+      default: () => []
+    },
     config: {
       type: Object,
       desc: 'Swiper配置项',
       default: () => ({})
     },
-    data: {
-      type: Array,
-      desc: '数据配置项',
-      default: () => []
+    carouselStyle: {
+      type: Object,
+      desc: '走马灯样式',
+      default: () => ({})
+    },
+    carouselClassName: {
+      type: String,
+      desc: '走马灯等类名',
+      default: () => ''
     }
   },
   data () {
@@ -76,7 +86,7 @@ export default {
       h('div', { class: 'swiper' }, [
         h('div', { class: 'swiper-wrapper' }, [
           this.data.map((item) => {
-            return h('div', { class: 'swiper-slide' }, [
+            return h('div', { class: ['swiper-slide', { [this.carouselClassName]: true }], style: { ...this.carouselStyle } }, [
               this.$scopedSlots.slide ? this.$scopedSlots.slide({ item: item }) : '<div slot="slide" slot-scope="{ item }" /> 请使用插槽自定义内容'
             ])
           })
@@ -98,13 +108,8 @@ export default {
     flex: 1;
     width: 100%;
     overflow: hidden;
-    // display: grid;
-    // grid-template-columns: repeat(2, 1fr);
-    // grid-template-rows: repeat(2, 1fr);
   }
   .swiper-slide {
-    padding: 0 10px;
-    color: #fff;
     display: flex;
     align-items: center;
     background: linear-gradient(
